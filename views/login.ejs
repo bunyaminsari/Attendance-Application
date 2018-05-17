@@ -1,0 +1,17 @@
+<% include ./partials/header.ejs %>
+
+<div class="ui main text container segment inverted auth">
+    <h1 class="ui huge header">Log In</h1>
+    <form  class="ui form" action="/login" method="post">
+        <div class="field">
+            <input type="text" name="username" placeholder="username">
+        </div>
+       <div class="field">
+           <input type="password" name="password" placeholder="password">
+       </div>
+        <button class="ui big purple  button">Log In</button>
+    </form>
+</div>
+
+
+<% include ./partials/footer %>

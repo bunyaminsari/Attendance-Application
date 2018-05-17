@@ -1,0 +1,86 @@
+<% include ../partials/header%>
+
+<div class="ui main text container segment">
+    <div class="ui top attached">
+        <!---->
+        <div class="ui items">
+            <div class="item">
+                <div class=" ui medium rounded image">
+                    <img src="<%=student.image%>">
+                </div>
+                <div class="content">
+                    <a class="ui huge header"><%= student.firstname%> <%= student.lastname%></a>
+                    <div class="description">
+                        <p>Class: <%= student.class%></p>
+                        <p>Roll No: <%= student.rollno%></p>
+                    </div>
+                    <div class="meta">
+                        <span>Dated: <%=student.created.toDateString() %></span>
+                    </div>
+                    <div class="extra">
+                        Created by: <%= student.user.username%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---->
+
+       <% if(currentUser && student.user.id.equals(currentUser._id)){%>
+            <a class=" ui yellow basic button" href="/students/<%= student._id%>/edit">Edit</a>
+            <form id="delete" action="/students/<%= student._id%>?_method=DELETE" method="POST">
+                <button class=" ui red basic button">Delete</button>
+            </form>
+        <%}%>
+    </div>
+    <hr>
+    <a id="add-attendance" href= "/students/<%=student._id%>/attendances/new" class="ui animated button green basic" >
+        <div class="visible content">Add Attendance</div>
+        <div class="hidden content">
+            <i class="add user icon"></i>
+        </div>
+    </a>
+
+    <table class="ui celled padded table">
+        <thead>
+        <tr><th class="single line">Status</th>
+            <th>Remarks</th>
+            <th>Date</th>
+            <th>User</th>
+            <th></th>
+        </tr></thead>
+        <tbody>
+        <% student.attendances.forEach(function (attendance) { %>
+        <tr>
+            <td>
+                <h2 class="ui center aligned header"><%= attendance.status %></h2>
+            </td>
+            <td class="single line">
+                <%= attendance.remarks %>
+            </td>
+            <td>
+                <%= attendance.created.toDateString()%>
+            </td>
+            <td>
+                <em>Added by <strong><%= attendance.user.username%></strong></em>
+            </td>
+            <% if(currentUser && attendance.user.id.equals(currentUser._id)){%>
+            <td>
+                <div class="ui buttons">
+                    <a class="ui  yellow button" href="/students/<%=student._id%>/attendances/<%=attendance._id%>/edit">Edit</i></a>
+                    <div class="or"></div>
+                    <form  action="/students/<%=student._id%>/attendances/<%=attendance._id%>?_method=DELETE" method="post">
+                        <input type="submit" value="Delete" class="ui red  button">
+                    </form>
+                </div>
+            </td>
+            <%}%>
+
+        </tr>
+        <% });%>
+        </tbody>
+
+    </table>
+    <a class="ui blue basic button" href="/students">Back</a>
+    </div>
+
+<% include ../partials/footer%>

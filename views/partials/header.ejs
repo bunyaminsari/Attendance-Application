@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Attendance App 2017
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css">
+    <link rel="stylesheet" href="/stylesheets/app.css">
+</head>
+<body>
+
+<div class="ui  inverted menu" >
+    <div class="ui container">
+        <div class="header item"><i class="student icon"></i>Attendance</div>
+        <a href="/" class="item">Home</a>
+        <a href="/students/new" class="item">New Student</a>
+        <div class="right menu">
+            <%if(!currentUser){ %>
+            <a href="/login" class="item">Log In</a>
+            <a href="/register" class="item">Sign Up</a>
+            <% }else{ %>
+            <a href="#" class="item">Logged in as <%= currentUser.username%></a>
+            <a href="/logout" class="item">Log out</a>
+            <%  } %>
+        </div>
+    </div>
+</div>
+
+<div class="ui container">
+    <%if(warning && warning.length >0){ %>
+    <div class="ui yellow message">
+        <div class="header">
+            <%= warning %>
+        </div>
+    </div>
+    <%}%>
+    <%if(error && error.length >0){ %>
+    <div class="ui red message">
+        <div class="header">
+            <%= error %>
+        </div>
+    </div>
+    <%}%>
+    <%if(success && success.length >0){ %>
+    <div class="ui green message">
+        <div class="header">
+            <%= success %>
+        </div>
+    </div>
+    <%}%>
+</div>

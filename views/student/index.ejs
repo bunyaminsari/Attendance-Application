@@ -1,0 +1,55 @@
+<%include ../partials/header %>
+
+
+<div class="ui main text container segment">
+    <div class="ui huge header ">Students Index</div>
+    <div class="ui top attached segment ">
+        <div class="ui divided items">
+
+
+            <table class="ui very basic collapsing celled table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Roll No</th>
+                    <th>Class</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div class="ui divided items">
+                    <% students.forEach(function(student){ %>
+                <tr>
+                    <td>
+                        <img src="<%=student.image%>" class="ui avatar image">
+                    </td>
+                    <td>
+                        <h4 class="ui image header">
+                            <div class="content">
+                                <a class="header" href="/students/<%= student._id%>"><%= student.firstname%></a>
+                            </div>
+                        </h4>
+                    </td>
+                    <td>
+                        <%=  student.lastname %>
+                    </td>
+                    <td>
+                        <%=  student.rollno %>
+                    </td>
+                    <td>
+                        <%=  student.class %>
+                    </td>
+                    <td>
+                        <a class="ui blue basic button" href="/students/<%= student._id%>">Show more</a>
+                    </td>
+                </tr>
+                    <%});%>
+                </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%include ../partials/footer %>

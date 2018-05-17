@@ -1,0 +1,31 @@
+<%include ../partials/header%>
+
+<div class="ui main text container segment">
+    <div class="ui huge header">Edit <%=student.firstname%></div>
+    <form  class="ui form" action="/students/<%= student._id%>?_method=PUT" method="POST">
+        <div class="field">
+            <label>Photo</label>
+            <input type="text" name="student[image]" value="<%= student.image%>">
+        </div>
+        <div class="field">
+            <label>First Name</label>
+            <input type="text" name="student[firstname]" value="<%= student.firstname%>">
+        </div>
+        <div class="field">
+            <label>Last Name</label>
+            <input type="text" name="student[lastname]" value="<%= student.lastname%>">
+        </div>
+        <div class="field">
+            <label>Roll No</label>
+            <input type="text" name="student[rollno]" value="<%= student.rollno%>">
+        </div>
+        <div class="field">
+            <label>Class</label>
+            <input type="text" name="student[class]" value="<%= student.class%>">
+        </div>
+        <input class="ui blue big basic button" type="submit">
+    </form>
+</div>
+
+
+<%include ../partials/footer%>
